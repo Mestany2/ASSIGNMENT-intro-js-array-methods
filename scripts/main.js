@@ -6,7 +6,10 @@ import { renderToDom } from "../utils/renderToDom.js";
 // Reusable function to get the cards on the DOM
 // .forEach()
 const renderCards = (array) => {
-  let refStuff = "<h1 class='text-white'>Cards Go Here!</h1>";
+  let refStuff = ""; 
+  array.forEach((item)=>{
+    refStuff += card(item);
+  })
   renderToDom("#cards", refStuff);
 }
 
@@ -29,16 +32,24 @@ const search = (event) => {
 // .filter() & .reduce() &.sort() - chaining
 const buttonFilter = (event) => {
   if(event.target.id.includes('free')) {
-    console.log('FREE')
+    const free = referenceList.filter(item => item.price <= 0);
+//Filter returns new array
+    renderCards(free)
   }
   if(event.target.id.includes('cartFilter')) {
     console.log('cartFilter')
+    // add ! before !item.inCart to return false
+    const wishList= referenceList.filter(item => item.inCart);
+    renderCards(wishList)
   }
   if(event.target.id.includes('books')) {
     console.log('books!')
+    const books = referenceList.filter(item => item.type.toLowerCase()=== 'book')
+    renderCards(books)
   }
   if(event.target.id.includes('clearFilter')) {
     console.log('clearFilter')
+    renderCards(referenceList)
   }
   if(event.target.id.includes('productList')) {
     let table = `<table class="table table-dark table-striped" style="width: 600px">
