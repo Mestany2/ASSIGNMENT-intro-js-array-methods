@@ -82,9 +82,13 @@ const cartTotal = () => {
 }
 
 // RESHAPE DATA TO RENDER TO DOM
-// .map()
+// .map() returns an array
 const productList = () => {
-  return [{ title: "SAMPLE TITLE", price: 45.00, type: "SAMPLE TYPE" }]
+  return referenceList.map(item => ({
+    title:item.title, 
+    price:item.price, 
+    type:item.type
+  }))
 }
 
 
